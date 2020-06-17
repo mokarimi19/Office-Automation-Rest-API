@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 
 
+AUTH_USER_MODEL = 'jira.CustomUser'
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
