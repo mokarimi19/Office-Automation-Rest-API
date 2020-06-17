@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from jira.models import *
 from jira.serializers import *
-
+from permissions import  *
 class TaskViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
