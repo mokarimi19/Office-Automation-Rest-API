@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from jira import *
+from rest_framework import viewsets
+from jira.models import *
+from jira.serializers import *
+
 class TaskViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
