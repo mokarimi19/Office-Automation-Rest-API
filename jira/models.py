@@ -15,6 +15,8 @@ class CustomUser(AbstractUser):
 
     REQUIRED_FIELDS = [
         "email",
+        "first_name",
+        "last_name"
     ]
     objects = CustomUserManager()
 
@@ -29,13 +31,26 @@ class CustomUser(AbstractUser):
 
 
 class Task(models.Model):
-    assignee = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    assignee = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name="task_assignee")
     description = models.TextField()
     title = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(blank=True, null=True)
+    # assigner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="task_assigner")
 
 
 class Department(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    manager = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
+    manager = models.OneToOneField(CustomUser, null=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+
+
+class Request(models.Model):
+    requests_type = [("m", "membership"), ("e2m", "promotion")]
+    status_type = [("a", "accepted"), ("r", "rejected")]
+    request_type = models.CharField(choices=requests_type, max_length=5)
+    requested_department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    requester = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    status = models.CharField(choices=status_type, max_length=2, null=True)
+
