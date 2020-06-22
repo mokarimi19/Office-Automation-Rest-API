@@ -31,7 +31,7 @@ class CustomUser(AbstractUser):
 
 
 class Task(models.Model):
-    assignee = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name="task_assignee")
+    assignee = models.ManyToManyField(CustomUser)
     description = models.TextField()
     title = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)

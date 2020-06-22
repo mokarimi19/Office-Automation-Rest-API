@@ -10,12 +10,30 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
+    permission_classes = [
+        IsManagerOrOwnerOrAdminTask,
+    ]
+    def get_serializer_class(self):
+        print(self.request.method)
+        if self.request.method == "PUT":
+            return UpdateTaskSerialier
+        return TaskSerializer
 
-    queryset = Task.objects.all()
-    serializer_class = TaskSerializer
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            queryset = Task.objects.all()
+        elif self.request.user.pk in Department.objects.values_list(
+            "manager_id", flat=True
+        ):
+            dep_users = CustomUser.objects.filter(
+                department_name=self.request.user.department_name
+            )
+            queryset = Task.objects.filter(
+                assignee__in=dep_users
+            )
+        else:
+            queryset = []
+        return queryset
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):

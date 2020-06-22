@@ -6,7 +6,7 @@ from rest_framework import routers
 from jira.views import *
 
 router = routers.DefaultRouter()
-router.register(r"tasks", TaskViewSet)
+router.register(r"tasks", TaskViewSet, basename='Task')
 router.register(r"users", CustomUserViewSet)
 router.register(r"department", DepartmentViewSet)
 router.register(r"request", RequestViewSet)

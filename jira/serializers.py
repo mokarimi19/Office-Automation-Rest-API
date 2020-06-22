@@ -8,7 +8,13 @@ import pytz
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
-        fields = ["assignee", "description", "title", "deadline"]
+        fields = [
+            "assignee",
+            "description",
+            "title",
+            "deadline",
+            "id",
+        ]
 
     # def validate(self, values):
     #     print("*"*500)
@@ -17,6 +23,27 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
     #     print(now<deadline)
     #     print(now> datetime)
     #     return values
+
+
+class UpdateTaskSerialier(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = (
+            "id",
+            "assignee",
+            "title",
+            "description",
+            "deadline",
+        )
+        write_only_fields = (
+            "assignee",
+            "deadline",
+        )
+        read_only_fields = (
+            "id",
+            "title",
+            "description",
+        )
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -85,6 +112,7 @@ class RequestSerializer(serializers.ModelSerializer):
         model = Request
         fields = "__all__"
         read_only_fields = ["status"]
+
     def validate_requested_department(self, value):
         print("request" * 50)
         if value.manager:
