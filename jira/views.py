@@ -43,9 +43,13 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
+    # permission_classes = [CustomUserPermission,]
     queryset = CustomUser.objects.filter(is_superuser=False)
-    serializer_class = CustomUserSerializer
-
+    # serializer_class = CustomUserSerializer
+    def get_serializer_class(self):
+        if self.request.method == "PUT":
+            return UpdateUserSerializer
+        return CustomUserSerializer
 
 class RequestViewSet(viewsets.ModelViewSet):
     # def get_object(self):
@@ -70,6 +74,15 @@ class DashboardUpdateViewset(generics.RetrieveUpdateAPIView):
     queryset = Request.objects.filter(status__isnull=True)
     serializer_class = DashboardSerializer
 
+
+class UserUpdateViewset(generics.RetrieveUpdateAPIView):
+
+    permission_classes = (
+        CustomUserPermission,
+    )
+    # queryset = self.get_queryset()
+    queryset = CustomUser.objects.all()
+    serializer_class = DashboardSerializer
 
 class DashboardListViewset(generics.ListAPIView):
     # queryset = Request.objects.filter(status__isnull=True)

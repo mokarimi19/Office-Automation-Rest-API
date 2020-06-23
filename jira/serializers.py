@@ -52,21 +52,42 @@ class DepartmentSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        # fields = ["password", "username", "first_name", "last_name", "email"]
+        # fields = "__all__"
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "department_name",
+        ]
+
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         # fields = ["password", "username", "first_name", "last_name", "email"]
-        fields = "__all__"
-        write_only_fields = ["password"]
-        read_only_fields = [
-            "groups",
-            "is_active",
-            "is_staff",
-            "is_superuser",
+        # fields = "__all__"
+        fields = [
+            "username",
+            "password",
+            "first_name",
+            "last_name",
             "date_joined",
-            "user_permissions",
             "department_name",
-            "groups",
+            "last_login",
+        ]
+        write_only_fields = [
+            "username",
+            "password",
+            "first_name",
+            "last_name",
+        ]
+        read_only_fields = [
+            "date_joined",
+            "department_name",
             "last_login",
         ]
 
@@ -83,19 +104,17 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = [
             "department_name",
-            "password",
             "username",
             "first_name",
             "last_name",
             "email",
         ]
-        read_only_fields = [
-            "password",
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-        ]
+        # read_only_fields = [
+        #     "username",
+        #     "first_name",
+        #     "last_name",
+        #     "email",
+        # ]
 
         # fields = "__all__"
 
@@ -105,6 +124,8 @@ class UpdateUserSerializer(serializers.ModelSerializer):
     #     instance.set_password(password)
     #     instance.save()  # before saving you can do any data manipulation
     #     return instance
+
+
 
 
 class RequestSerializer(serializers.ModelSerializer):
