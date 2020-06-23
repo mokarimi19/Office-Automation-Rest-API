@@ -13,9 +13,15 @@ This project cover followin tasks:
 # APIs
 
 Most of APIs are represented on DRF API-Root Page Browsable API, **But not all of them**.
+
   "tasks":  "[http://127.0.0.1:8000/tasks/[pk]](http://127.0.0.1:8000/tasks/)"  
+  
   "users":  "[http://127.0.0.1:8000/users/[pk]](http://127.0.0.1:8000/users/)"
+  
   "department":  "[http://127.0.0.1:8000/department/[pk]](http://127.0.0.1:8000/department/)"
+  
   "request":  "[http://127.0.0.1:8000/request/[pk]](http://127.0.0.1:8000/request/)"
+  
   This is not apeared in API-Root Page, Because it is not register in router.
+  
   "dashboard":  "[http://127.0.0.1:8000/dashboard/[pk]](http://127.0.0.1:8000/dashboard/)"
