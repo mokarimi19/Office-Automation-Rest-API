@@ -30,5 +30,14 @@ Most of APIs are represented on DRF API-Root Page Browsable API, **But not all o
   # Functionalities
 ## Create Superuser
 Default User of Django has been extented to meet requirements of project(Default process of creating new user in Django doesn't include first_name, last_name)
+
 ![](https://github.com/mokarimi19/Office-Automation-Rest-API/blob/cc303b1ebc395f8943fdffba1a468529837708ba/img/createsuperuser.PNG)
+
+# Test
+## POST Request Tools
+Postman is the most popular API testing tools, I grab the headers and body from Inspect Element, Then I can Change the Parameters I need to test.
+
+![](https://github.com/mokarimi19/Office-Automation-Rest-API/blob/master/img/postman.png)
+
+There are also some more alternative method to test project in djando and DRF API, But definitely Postman API Testing Method is superior to all.
 
