@@ -25,3 +25,10 @@ Most of APIs are represented on DRF API-Root Page Browsable API, **But not all o
   This is not apeared in API-Root Page, Because it is not register in router.
   
   "dashboard":  "[http://127.0.0.1:8000/dashboard/[pk]](http://127.0.0.1:8000/dashboard/)"
+  
+  
+  # Functionalities
+## Create Superuser
+Default User of Django has been extented to meet requirements of project(Default process of creating new user in Django doesn't include first_name, last_name)
+![](https://github.com/mokarimi19/Office-Automation-Rest-API/blob/cc303b1ebc395f8943fdffba1a468529837708ba/img/createsuperuser.PNG)
+
