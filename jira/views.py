@@ -43,7 +43,7 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
-    # permission_classes = [CustomUserPermission,]
+    permission_classes = [CustomUserPermission,]
     queryset = CustomUser.objects.filter(is_superuser=False)
     # serializer_class = CustomUserSerializer
     def get_serializer_class(self):

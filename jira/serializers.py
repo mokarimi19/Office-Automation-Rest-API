@@ -3,7 +3,7 @@ from rest_framework import serializers
 from jira.models import *
 from datetime import datetime
 import pytz
-
+from django.utils import timezone
 
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -17,11 +17,12 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
     # def validate(self, values):
-    #     print("*"*500)
-    #     now = pytz.UTC.localize(datetime.now())
+    #     # now = pytz.UTC.localize(datetime.now())
+    #     # deadline = pytz.UTC.localize(values['deadline'])
+    #     tz = pytz.timezone('America/Los_Angeles')
+    #     now = tz.normalize(timezone.now())
     #     deadline = pytz.UTC.localize(values['deadline'])
-    #     print(now<deadline)
-    #     print(now> datetime)
+
     #     return values
 
 
@@ -107,7 +108,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             "username",
             "first_name",
             "last_name",
-            "email",
+            # "email",
         ]
         # read_only_fields = [
         #     "username",
