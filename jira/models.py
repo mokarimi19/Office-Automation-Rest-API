@@ -36,7 +36,6 @@ class Task(models.Model):
     title = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(blank=True, null=True)
-    # assigner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="task_assigner")
 
 
 class Department(models.Model):

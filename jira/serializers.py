@@ -56,8 +56,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        # fields = ["password", "username", "first_name", "last_name", "email"]
-        # fields = "__all__"
+
         fields = [
             "username",
             "first_name",
@@ -69,8 +68,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        # fields = ["password", "username", "first_name", "last_name", "email"]
-        # fields = "__all__"
+
         fields = [
             "username",
             "password",
@@ -79,6 +77,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             "date_joined",
             "department_name",
             "last_login",
+            "email"
         ]
         write_only_fields = [
             "username",
@@ -136,7 +135,6 @@ class RequestSerializer(serializers.ModelSerializer):
         read_only_fields = ["status"]
 
     def validate_requested_department(self, value):
-        print("request" * 50)
         if value.manager:
             raise serializers.ValidationError("This Department Already has Manager!!")
         return value
@@ -162,9 +160,7 @@ class DashboardSerializer(serializers.ModelSerializer):
         write_only_fields = ("status",)
 
     def update(self, instance, validated_data):
-        print("validated_data", validated_data)
-        print("instance", instance)
-        print("instance.request_type", instance.request_type)
+
         if validated_data:
             if validated_data["status"] == "a":
                 if instance.request_type == "m":
