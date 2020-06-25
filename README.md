@@ -71,6 +71,7 @@ Promotion is a request of dapartment employee who wants to become of a departmen
   - Make user manger of a department in case of acceptance of promotion request.
   - Make change to department name of user class in case of acceptance of membership request.
  
+ ![](https://github.com/mokarimi19/Office-Automation-Rest-API/blob/master/img/dashboard.png)
  ## Task manager
  All user can create task, an employee can just assign it to himsef, but manager assign it to himself or his department employee.
  
