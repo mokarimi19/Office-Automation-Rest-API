@@ -55,6 +55,13 @@ Promotion is a request of dapartment employee who wants to become of a departmen
 
  Hint: It is recorded in database as "e2m"(initial of "Employee to Manager") to "request_type" field.
  
+ ## firing 
+ In order to dissmiss or fire a employee from department or degrading a manager to an employee, It is just set the department name of users/pk=id to null.
+
+There is also an fire GET method on user according to bellow:
+ http://127.0.0.1:8000/users/[pk]/fire
+ 
+ manager or admin auhtoization is checked, but this API is not well-tested!
  ## Dashboard
  All request will be listed to the user according to its rule:
  
@@ -86,3 +93,6 @@ Postman is the most popular API testing tools, I grab the headers and body from 
 
 There are also some more alternative method to test project in djando and DRF API, But definitely Postman API Testing Method is superior to all. The active way of testing API in this projec was Browsable API of DRF. All code has been written in a way than code be tested with  Browsable API of DRF
 
+
+## Improvement
+Unforunaetly, In the begginig of project, I wasn't familiar with awesome api documentation  tools Swagger and openAPI standard. I could design better API.
